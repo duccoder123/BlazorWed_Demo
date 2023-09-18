@@ -1,0 +1,50 @@
+﻿@page "/LearnBlazor/BindProp"
+<h3>BindProp</h3>
+    Name : <strong>@Product.Name</strong>
+<br />
+    Active : @Product.IsActive
+<br />
+   Price : @Product.Price
+<br />
+This Product is : @(Product.IsActive ? "Active" : "InActive")
+<br />
+Property Selected :  @SelectValue 
+<br />
+@if (!String.IsNullOrWhiteSpace(SelectValue))
+{
+    <p>Property Value : @Product.Prop.FirstOrDefault(u=> u.Key== SelectValue).Value</p>
+}
+
+Active :
+<input type="checkbox" @bind-value="@Product.IsActive" checked="@(Product.IsActive?"checked":null)" />
+   Price:
+<input type="text" @bind="@Product.Price" @bind:event="oninput" /><br />
+<select @bind=@SelectValue> 
+    @foreach(var item in Product.Prop)
+    {
+        <option value="@item.Key">@item.Key</option>
+    }
+</select>
+
+
+
+
+
+@code {
+    private string SelectValue = "";
+
+    Demo_Product Product = new()
+        {
+            Id = 1,
+            Name = "LaLisa",
+            IsActive = true,
+            Price = 10.99,
+            Prop = new List<Demo_ProductProp>()
+            {
+                new Demo_ProductProp {Id =1, Key="Color",Value="Black"},
+                new Demo_ProductProp {Id =2, Key="Flavor",Value="Rose Jasmine"},
+                new Demo_ProductProp {Id =3, Key="Size",Value="20oz"}
+
+            }
+        };
+}

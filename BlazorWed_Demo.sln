@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWeb_Server", "BlazorWeb_Server\BlazorWeb_Server.csproj", "{576748F7-52EF-412E-BCCA-D8FF03573E19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWeb_Server", "BlazorWeb_Server\BlazorWeb_Server.csproj", "{576748F7-52EF-412E-BCCA-D8FF03573E19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo_Models", "BlazorDemo_Models\BlazorDemo_Models.csproj", "{26436F62-632B-4C0D-81C2-0A6F4851DF53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_Models", "BlazorDemo_Models\BlazorDemo_Models.csproj", "{26436F62-632B-4C0D-81C2-0A6F4851DF53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWeb_Client", "BlazoWeb_Client\BlazorWeb_Client.csproj", "{DB2606CA-0C14-4056-8DF4-34DFB7CE812F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWeb_Client", "BlazoWeb_Client\BlazorWeb_Client.csproj", "{DB2606CA-0C14-4056-8DF4-34DFB7CE812F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

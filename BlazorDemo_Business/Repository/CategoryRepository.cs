@@ -1,4 +1,5 @@
-﻿using BlazorDemo_Business.Repository.IRepository;
+﻿using AutoMapper;
+using BlazorDemo_Business.Repository.IRepository;
 using BlazorDemo_DataAccess;
 using BlazorDemo_DataAccess.Data;
 using BlazorDemo_Models;
@@ -13,47 +14,60 @@ namespace BlazorDemo_Business.Repository
     public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _db;
-        public CategoryRepository(ApplicationDbContext db)
+        private readonly IMapper _mapper;
+        public CategoryRepository(ApplicationDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         public CategoryDTO Create(CategoryDTO categoryDTO)
         {
-            Category category = new Category()
-            {
-                Id = categoryDTO.Id,
-                Name = categoryDTO.Name,
-                CreatedDate = DateTime.Now
-            };
-            _db.Categories.Add(category);
+            var category = _mapper.Map<CategoryDTO, Category>(categoryDTO);
+            category.CreatedDate = DateTime.Now;
+            var addCateg = _db.Categories.Add(category);
             _db.SaveChanges();
-            return new CategoryDTO
-            {
-                Id = categoryDTO.Id,
-                Name = categoryDTO.Name
-            };
+            return _mapper.Map<Category, CategoryDTO>(addCateg.Entity);
 
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+           var obj = _db.Categories.FirstOrDefault(u=>u.Id== id);
+            if (obj != null)
+            {
+                _db.Categories.Remove(obj);
+                return _db.SaveChanges();
+            }
+            return 0;
         }
 
         public CategoryDTO Get(int id)
         {
-            throw new NotImplementedException();
+            var obj = _db.Categories.FirstOrDefault(u => u.Id == id);
+            if (obj != null)
+            {
+              return  _mapper.Map<Category,CategoryDTO>(obj); 
+            }
+            return new CategoryDTO();   
         }
 
         public IEnumerable<CategoryDTO> GetAll()
         {
-            throw new NotImplementedException();
+           return _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(_db.Categories);
         }
 
         public CategoryDTO Update(CategoryDTO categoryDTO)
         {
-            throw new NotImplementedException();
+           var obj = _db.Categories.FirstOrDefault(u => u.Id == categoryDTO.Id);    
+            if (obj != null)
+            {
+                obj.Name = categoryDTO.Name;
+                _db.Categories.Update(obj);
+                _db.SaveChanges();
+                return _mapper.Map<Category, CategoryDTO>(obj);
+            }
+            return  categoryDTO;
         }
     }
 }

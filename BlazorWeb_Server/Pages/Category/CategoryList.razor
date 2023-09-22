@@ -1,0 +1,64 @@
+﻿@page "/category"
+@inject ICategoryRepository _categoryRepo
+
+
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Category List</h4>
+    </div>
+    <div class="col-4 offset-1">
+        <a href="category/create" class="btn btn-info form-control">Add New Category</a>
+    </div>
+    <div class="col-12">
+        @if (Categories.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Categories)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                <NavLink href="@($"category/edit/{item.Id}")" class="btn btn-success" >Edit</NavLink>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            if (IsLoading)
+            {
+                <div class="text-center">
+                    <img src="/images/loading.gif">
+                    </div>
+            }
+            else
+            {
+                <p>No record found.</p>
+            }
+        }
+    </div>
+</div>
+@code {
+    private IEnumerable<CategoryDTO> Categories { get; set; } = new List<CategoryDTO>();
+    public bool IsLoading { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        await Task.Run(LoadCategories);
+    }
+    private void LoadCategories()
+    {
+        Categories = _categoryRepo.GetAll();
+        IsLoading = false;
+    }
+}

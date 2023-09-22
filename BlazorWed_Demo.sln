@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_Models", "Blazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWeb_Client", "BlazoWeb_Client\BlazorWeb_Client.csproj", "{DB2606CA-0C14-4056-8DF4-34DFB7CE812F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo_Business", "BlazorDemo_Business\BlazorDemo_Business.csproj", "{CDF88DB6-1F39-4D63-BC19-F40808C6EAEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_Business", "BlazorDemo_Business\BlazorDemo_Business.csproj", "{CDF88DB6-1F39-4D63-BC19-F40808C6EAEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo_Common", "BlazorDemo_Common\BlazorDemo_Common.csproj", "{757AA11F-C766-47AE-B798-710254201A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_Common", "BlazorDemo_Common\BlazorDemo_Common.csproj", "{757AA11F-C766-47AE-B798-710254201A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorDemo_DataAccess", "BlazorDemo_DataAccess\BlazorDemo_DataAccess.csproj", "{E05C0C8A-89DD-4CD7-8875-991BEFB626C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorDemo_DataAccess", "BlazorDemo_DataAccess\BlazorDemo_DataAccess.csproj", "{E05C0C8A-89DD-4CD7-8875-991BEFB626C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

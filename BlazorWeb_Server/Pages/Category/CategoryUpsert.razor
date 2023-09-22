@@ -1,0 +1,38 @@
+﻿@page "/category/create"
+@page "/category/edit/{id}"
+
+@inject ICategoryRepository _categoryRepo
+@inject NavigationManager _navigationMana
+<div class="row my-2">
+    <h3 class="card-title text-primary mb-3 ml-3">@Title Category</h3>
+    <div class="col-12">
+        @* EditForm là một component cung cấp sự hỗ trợ cho việc tạo và quản lý form  *@
+        <EditForm Model="Category" OnValidSubmit="UpsertCategory">
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+            <div class="form-group">
+                <label>Name</label>
+                <InputText @bind-Value="Category.Name" class="form-control"></InputText>
+                <ValidationMessage For="()=> Category.Name"></ValidationMessage>
+            </div>
+            <div class="row form-group mt-2">
+                <div class="col-6" >
+                    <button class="btn btn-primary" style="width:200px">@Title</button>
+                </div>
+                <div class="col-6">
+                    <NavLink href="category" style="width:200px" class="btn btn-secondary">Back</NavLink>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private CategoryDTO Category { get; set; } = new CategoryDTO();
+    private string Title { get; set; } = "Create";
+    private void UpsertCategory()
+    {
+        _categoryRepo.Create(Category);
+        _navigationMana.NavigateTo("category");
+    }
+}
